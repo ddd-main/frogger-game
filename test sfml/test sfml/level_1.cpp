@@ -423,7 +423,7 @@ void level_1::set_texture()
 
 	//font el timer
 	timer_text.setFont(timer_font);
-	timer_time = seconds(188);
+	timer_time = seconds(20);
 	timer_text.setPosition(15, 640);
 	timer_text.setColor(Color(0, 0, 255));
 
@@ -473,10 +473,12 @@ void level_1::playing()
 		timer_string = to_string(timer);
 		timer_text.setString("timer: " + timer_string);
 
+		
 		// time elapsed case of ZERO
 		if (!timer) {
-			window.display();
+			window.close(); 
 		}
+		
 
 		// window dimensions to kill frogger
 		if (Froggers[froggernm].getPosition().x < 0 || Froggers[froggernm].getPosition().x >= 780 || Froggers[froggernm].getPosition().y >= 660 || Froggers[froggernm].getPosition().y <= -30) {
