@@ -1,25 +1,36 @@
-﻿Build started 12/19/2019 4:27:27 PM.
+﻿Build started 12/19/2019 11:28:33 PM.
      1>Project "C:\Users\Freeware Sys\Desktop\my programs\test sfml\test sfml\test sfml.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Users\Freeware Sys\Downloads\VS2012\set up\VC\bin\CL.exe /c /I"C:\Users\Freeware Sys\Desktop\my programs\test sfml\/../External Libraries/SFML/include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt level_1.cpp
+         C:\Users\Freeware Sys\Downloads\VS2012\set up\VC\bin\CL.exe /c /I"C:\Users\Freeware Sys\Desktop\my programs\test sfml\/../External Libraries/SFML/include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt level_1.cpp level_2.cpp main.cpp
+         main.cpp
+         level_2.cpp
+     1>c:\users\freeware sys\desktop\my programs\test sfml\test sfml\level_2.cpp(418): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\freeware sys\desktop\my programs\test sfml\test sfml\level_2.cpp(524): warning C4244: 'argument' : conversion from 'const float' to 'const int', possible loss of data
+     1>c:\users\freeware sys\desktop\my programs\test sfml\test sfml\level_2.cpp(591): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\freeware sys\desktop\my programs\test sfml\test sfml\level_2.cpp(627): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\freeware sys\desktop\my programs\test sfml\test sfml\level_2.cpp(668): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\freeware sys\desktop\my programs\test sfml\test sfml\level_2.cpp(708): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\freeware sys\desktop\my programs\test sfml\test sfml\level_2.cpp(746): warning C4018: '<' : signed/unsigned mismatch
          level_1.cpp
-     1>c:\users\freeware sys\desktop\my programs\test sfml\test sfml\level_1.cpp(487): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
-     1>c:\users\freeware sys\desktop\my programs\test sfml\test sfml\level_1.cpp(580): warning C4244: 'argument' : conversion from 'const float' to 'const int', possible loss of data
-     1>c:\users\freeware sys\desktop\my programs\test sfml\test sfml\level_1.cpp(639): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\freeware sys\desktop\my programs\test sfml\test sfml\level_1.cpp(655): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\freeware sys\desktop\my programs\test sfml\test sfml\level_1.cpp(671): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\freeware sys\desktop\my programs\test sfml\test sfml\level_1.cpp(707): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\freeware sys\desktop\my programs\test sfml\test sfml\level_1.cpp(739): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\freeware sys\desktop\my programs\test sfml\test sfml\level_1.cpp(890): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
-     1>c:\users\freeware sys\desktop\my programs\test sfml\test sfml\level_1.cpp(891): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
-     1>c:\users\freeware sys\desktop\my programs\test sfml\test sfml\level_1.cpp(893): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\freeware sys\desktop\my programs\test sfml\test sfml\level_1.cpp(894): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\freeware sys\desktop\my programs\test sfml\test sfml\level_1.cpp(490): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\freeware sys\desktop\my programs\test sfml\test sfml\level_1.cpp(591): warning C4244: 'argument' : conversion from 'const float' to 'const int', possible loss of data
+     1>c:\users\freeware sys\desktop\my programs\test sfml\test sfml\level_1.cpp(654): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\freeware sys\desktop\my programs\test sfml\test sfml\level_1.cpp(670): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\freeware sys\desktop\my programs\test sfml\test sfml\level_1.cpp(686): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\freeware sys\desktop\my programs\test sfml\test sfml\level_1.cpp(724): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\freeware sys\desktop\my programs\test sfml\test sfml\level_1.cpp(761): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\freeware sys\desktop\my programs\test sfml\test sfml\level_1.cpp(922): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\freeware sys\desktop\my programs\test sfml\test sfml\level_1.cpp(923): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\freeware sys\desktop\my programs\test sfml\test sfml\level_1.cpp(925): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\freeware sys\desktop\my programs\test sfml\test sfml\level_1.cpp(926): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+         Generating Code...
        Link:
          C:\Users\Freeware Sys\Downloads\VS2012\set up\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Freeware Sys\Desktop\my programs\test sfml\Debug\test sfml.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Users\Freeware Sys\Desktop\my programs\test sfml\/../External Libraries/SFML/lib" "sfml-main-d.lib" "sfml-graphics-d.lib" "sfml-window-d.lib" "sfml-system-d.lib" "sfml-audio-d.lib" "sfml-network-d.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Freeware Sys\Desktop\my programs\test sfml\Debug\test sfml.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Freeware Sys\Desktop\my programs\test sfml\Debug\test sfml.lib" /MACHINE:X86 Debug\level_1.obj
+         Debug\level_2.obj
          Debug\main.obj
          test sfml.vcxproj -> C:\Users\Freeware Sys\Desktop\my programs\test sfml\Debug\test sfml.exe
      1>Done Building Project "C:\Users\Freeware Sys\Desktop\my programs\test sfml\test sfml\test sfml.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:05.75
+Time Elapsed 00:00:10.94

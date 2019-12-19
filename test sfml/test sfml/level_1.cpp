@@ -1,4 +1,5 @@
 #include "level_1.h"
+#include "level_2.h"
 #include<iostream>
 #include<ctime>
 #include <SFML\Graphics.hpp>
@@ -16,7 +17,7 @@ level_1::level_1(void)
 {
 	window.create(VideoMode(799, 675), "FROGGER DEMO",Style::Close);
 
-	score_dis=0;
+	score_dis = 0;
 	healthcnt = 3;
 	froggernm = 0;
 	memset(winsFound, false, sizeof winsFound);
@@ -45,6 +46,8 @@ void level_1::load_from_file()
 	if (!ForggerPH.loadFromFile("froggers.png")) {
 		cout << "Failed loading from file \n";
 	}
+
+	//loading objects in sea from folder
 	if (!Object1PH.loadFromFile("objects.png")) {
 		cout << "Failed loading from file \n";
 	}
@@ -187,7 +190,6 @@ void level_1::load_from_file()
 	}
 
 
-
 	//bomb in case of coliision with cars
 	if (!bomb.loadFromFile("bomb.png")) {
 		cout << "Failed loading from file \n";
@@ -199,7 +201,7 @@ void level_1::load_from_file()
 	}
 
 	
-
+	
 }
 
 
@@ -433,7 +435,7 @@ void level_1::set_texture()
 
 	//font el timer
 	timer_text.setFont(timer_font);
-	timer_time = seconds(190);
+	timer_time = seconds(188);
 	timer_text.setPosition(15, 640);
 	timer_text.setColor(Color(0, 0, 255));
 
@@ -460,6 +462,7 @@ void level_1::set_texture()
 
 	//audio of frooger reach wins
 	win_sound.setBuffer(win_buffer);
+
 
 	//trucked with cars
 	bombSprite.setTexture(bomb);
@@ -498,6 +501,9 @@ void level_1::playing()
 		// time elapsed case of ZERO
 		if (!timer) {
 			window.close(); 
+			mainsound.stop();
+			timer_end_sound.stop();
+			level_2 game1;
 		}
 		
 
@@ -522,7 +528,7 @@ void level_1::playing()
 					}
 			  }
 
-			else if (Froggers[froggernm].getPosition().y >= 660){
+			  else if (Froggers[froggernm].getPosition().y >= 660){
 				for(int i=5;i>=3;i--){
 					bombSprite.setTextureRect(IntRect(100*i, 0, 100, 100));
 					bombSprite.setPosition(Vector2f(Froggers[froggernm].getPosition().x,Froggers[froggernm].getPosition().y-150));
@@ -540,7 +546,12 @@ void level_1::playing()
 			healthcnt--;
 			score_dis+=countscore.size();
 			countscore.clear();
-			if (!healthcnt)window.close();
+			if (!healthcnt){
+				window.close();
+				mainsound.stop();
+				timer_end_sound.stop();
+				level_2 game1;
+			}
 		}
 
 
@@ -589,7 +600,11 @@ void level_1::playing()
 					Froggers[froggernm].setTextureRect(IntRect(50 * 1, 0, 50, 40));
 					froggerHop_sound.play();
 				}
-				else if (event.key.code == Keyboard::Escape) { window.close(); }
+				else if (event.key.code == Keyboard::Escape) {	
+					window.close();
+					mainsound.stop();
+					timer_end_sound.stop();
+				}
 
 			}
 
@@ -688,8 +703,12 @@ void level_1::playing()
 				window.draw(Froggers[froggernm]);
 				window.display();
 				healthcnt--;
-				if (!healthcnt)window.close();
-			
+				if (!healthcnt){
+					window.close();
+					mainsound.stop();
+					timer_end_sound.stop();
+					level_2 game1;
+				}
 			
 			}
 
@@ -722,7 +741,12 @@ void level_1::playing()
 				window.draw(Froggers[froggernm]);
 				window.display();
 				healthcnt--;
-				if (!healthcnt)window.close();
+				if (!healthcnt){
+					window.close();
+					mainsound.stop();
+					timer_end_sound.stop();
+					level_2 game1;
+				}
 			}
 
 			else{
@@ -746,8 +770,10 @@ void level_1::playing()
 					froggernm++; winsFound[i] = true;
 					if (froggernm == 5) {
 						froggernm--;
-						cout << "WINS\n";
 						window.close();
+						mainsound.stop();
+						timer_end_sound.stop();
+						level_2 game1;
 						break;
 					}
 					window.draw(Froggers[froggernm]);
@@ -773,12 +799,16 @@ void level_1::playing()
 					window.draw(Froggers[froggernm]);
 					window.display();
 					healthcnt--;
-					if (!healthcnt)window.close();
-
-				}
+					if (!healthcnt){
+						window.close();
+						mainsound.stop();
+						timer_end_sound.stop();
+						level_2 game1;
+				    }
 
 			}
 		}
+	}
 
 
 
@@ -811,7 +841,12 @@ void level_1::playing()
 						window.draw(Froggers[froggernm]);
 						window.display();
 						healthcnt--;
-						if (!healthcnt)window.close();
+						if (!healthcnt){
+							window.close();
+							mainsound.stop();
+							timer_end_sound.stop();
+							level_2 game1;
+						}
 					}
 				}
 			}
@@ -820,8 +855,6 @@ void level_1::playing()
 	}
 
 }
-
-
 
 
 //Collision

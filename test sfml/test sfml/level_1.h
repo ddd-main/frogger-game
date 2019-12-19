@@ -84,9 +84,7 @@ private:
 	string timer_string;
 
 
-	//3lshan yozbot el background lma tkbr   
-	//View view;
-
+	
 	// music in the game
 	SoundBuffer mainbuffer;
 	Sound mainsound;
@@ -106,6 +104,8 @@ private:
 	SoundBuffer win_buffer;
 	Sound win_sound;
 
+
+
 public:
 	level_1(void);
 	void load_from_file();
@@ -113,6 +113,8 @@ public:
 	void playing();
 	~level_1(void);
 };
+
+
 namespace Collision {
 	//////
 	/// Test for a collision between two sprites by comparing the alpha values of overlapping pixels
