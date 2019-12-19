@@ -177,6 +177,16 @@ void level_1::load_from_file()
 	if (!froggerSinking_buffer.loadFromFile("froggerDunked.ogg")) {
 		cout << "Failed loading from file \n";
 	}
+	//music timer ends (last 10 seconds)
+	if (!timer_end_buffer.loadFromFile("TickingClock.wav")) {
+		cout << "Failed loading from file \n";
+	}
+	//music frogger reach wins
+	if (!win_buffer.loadFromFile("glass_ping.wav")) {
+		cout << "Failed loading from file \n";
+	}
+
+
 
 	//bomb in case of coliision with cars
 	if (!bomb.loadFromFile("bomb.png")) {
@@ -423,7 +433,7 @@ void level_1::set_texture()
 
 	//font el timer
 	timer_text.setFont(timer_font);
-	timer_time = seconds(20);
+	timer_time = seconds(190);
 	timer_text.setPosition(15, 640);
 	timer_text.setColor(Color(0, 0, 255));
 
@@ -445,9 +455,14 @@ void level_1::set_texture()
 	//audio of frogger Skining in water
 	froggerSinking_sound.setBuffer(froggerSinking_buffer);
 
+	//audio of timer ends
+	timer_end_sound.setBuffer(timer_end_buffer);
+
+	//audio of frooger reach wins
+	win_sound.setBuffer(win_buffer);
 
 	//trucked with cars
-	bombSprite.setTexture(bomb);	
+	bombSprite.setTexture(bomb);
 	
 	// sinking in water
 	SinkingSprite.setTexture(Sinking);
@@ -474,6 +489,12 @@ void level_1::playing()
 		timer_text.setString("timer: " + timer_string);
 
 		
+		//audio clock (last 10 seconds)
+		if(timer==10){
+			timer_end_sound.play();
+			timer_end_sound.setLoop(true);
+		}
+
 		// time elapsed case of ZERO
 		if (!timer) {
 			window.close(); 
@@ -482,7 +503,8 @@ void level_1::playing()
 
 		// window dimensions to kill frogger
 		if (Froggers[froggernm].getPosition().x < 0 || Froggers[froggernm].getPosition().x >= 780 || Froggers[froggernm].getPosition().y >= 660 || Froggers[froggernm].getPosition().y <= -30) {
-			  if (Froggers[froggernm].getPosition().x < 0){
+			froggerTrucked_sound.play();  
+			if (Froggers[froggernm].getPosition().x < 0){
 				for(int i=5;i>=3;i--){
 					bombSprite.setTextureRect(IntRect(100*i, 0, 100, 100));
 					bombSprite.setPosition(Vector2f(Froggers[froggernm].getPosition().x,Froggers[froggernm].getPosition().y-50));
@@ -509,7 +531,6 @@ void level_1::playing()
 					}
 				  }
 
-				froggerTrucked_sound.play();
 			
 			Hearts.erase(Hearts.begin() + healthcnt - 1);
 			Froggers[froggernm].setPosition(Vector2f(300.f, 630.f));
@@ -617,8 +638,6 @@ void level_1::playing()
 		//objects move and frogger sinking handel!!
 		for (int i = 0; i < objectsSeaRight.size(); i++) {
 			if (Collision::PixelPerfectTest(objectsSeaRight[i], Froggers[froggernm])) {
-			    score_dis+=countscore.size();
-				countscore.clear();
 				objectsSeaRight[i].move(2.f,0.f);
 				froggerfound = true;
 				Froggers[froggernm].move(2.f, 0.f);
@@ -635,8 +654,6 @@ void level_1::playing()
 
 		for (int i = 0; i < objectsSeaLeft.size(); i++) {
 			if (Collision::PixelPerfectTest(objectsSeaLeft[i], Froggers[froggernm])) {
-				score_dis+=countscore.size();
-				countscore.clear();
 				objectsSeaLeft[i].move(-2.f, 0.f);
 				froggerfound = true;
 				Froggers[froggernm].move(-2.f, 0.f);
@@ -656,14 +673,14 @@ void level_1::playing()
 				score_dis+=countscore.size();
 				countscore.clear();
 				
+				froggerTrucked_sound.play();
+
 				for(int i=5;i>=3;i--){
 				bombSprite.setTextureRect(IntRect(100*i, 0, 100, 100));
 				bombSprite.setPosition(Vector2f(Froggers[froggernm].getPosition().x,Froggers[froggernm].getPosition().y-50));
 				window.draw(bombSprite);
 				window.display();
 				}
-
-				froggerTrucked_sound.play();
 
 				Hearts.erase(Hearts.begin() + healthcnt - 1);
 				Froggers[froggernm].setPosition(Vector2f(300.f, 630.f));
@@ -689,7 +706,8 @@ void level_1::playing()
 			if (Collision::PixelPerfectTest(objectsRoadRight[i], Froggers[froggernm])) {
 				score_dis+=countscore.size();
 				countscore.clear();
-				
+				froggerTrucked_sound.play();
+
 				for(int i=5;i>=3;i--){
 				bombSprite.setTextureRect(IntRect(100*i, 0, 100, 100));
 				bombSprite.setPosition(Vector2f(Froggers[froggernm].getPosition().x,Froggers[froggernm].getPosition().y-50));
@@ -697,9 +715,7 @@ void level_1::playing()
 				window.display();
 				}
 
-				froggerTrucked_sound.play();
-
-
+				
 				Hearts.erase(Hearts.begin() + healthcnt - 1);
 				Froggers[froggernm].setPosition(Vector2f(300.f, 630.f));
 				Froggers[froggernm].setTextureRect(IntRect(50 * 1, 50 * 3, 50, 40));
@@ -721,6 +737,12 @@ void level_1::playing()
 		for (int i = 0; i < Wins.size(); i++) {
 			if (!winsFound[i]) {
 				if (Collision::PixelPerfectTest(Wins[i], Froggers[froggernm])) {
+					score_dis+=countscore.size();
+					countscore.clear();
+					
+					win_sound.play();
+					win_sound.setVolume(30.f);
+					
 					froggernm++; winsFound[i] = true;
 					if (froggernm == 5) {
 						froggernm--;
@@ -736,6 +758,15 @@ void level_1::playing()
 
 			else {
 				if (Collision::PixelPerfectTest(Wins[i], Froggers[froggernm])) {
+					froggerTrucked_sound.play();
+
+					for(int i=5;i>=3;i--){
+						bombSprite.setTextureRect(IntRect(100*i, 0, 100, 100));
+						bombSprite.setPosition(Vector2f(Froggers[froggernm].getPosition().x,Froggers[froggernm].getPosition().y-50));
+						window.draw(bombSprite);
+						window.display();
+					}
+
 					Hearts.erase(Hearts.begin() + healthcnt - 1);
 					Froggers[froggernm].setPosition(Vector2f(300.f, 630.f));
 					Froggers[froggernm].setTextureRect(IntRect(50 * 1, 50 * 3, 50, 40));
@@ -750,6 +781,8 @@ void level_1::playing()
 		}
 
 
+
+		     
 			if (Froggers[froggernm].getPosition().y < 235) {
 				if (!froggerfound) {
 
@@ -759,13 +792,18 @@ void level_1::playing()
 						!Collision::PixelPerfectTest(Winplacesprite4, Froggers[froggernm]) &&
 						!Collision::PixelPerfectTest(Winplacesprite5, Froggers[froggernm])) {
 						
+						score_dis+=countscore.size();
+						countscore.clear();
+
+						froggerSinking_sound.play();
+						
 						for(int i=0;i<3;i++){
 							SinkingSprite.setTextureRect(IntRect(200, 0 ,150,120 ));
 							SinkingSprite.setPosition(Vector2f(Froggers[froggernm].getPosition().x,Froggers[froggernm].getPosition().y-50));
 							window.draw(SinkingSprite);
 							window.display();
 						}
-						froggerSinking_sound.play();
+						
 
 						Hearts.erase(Hearts.begin() + healthcnt - 1);
 						Froggers[froggernm].setPosition(Vector2f(300.f, 630.f));

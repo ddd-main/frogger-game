@@ -100,8 +100,11 @@ private:
 	SoundBuffer froggerSinking_buffer;
 	Sound froggerSinking_sound;
 
+	SoundBuffer timer_end_buffer;
+	Sound timer_end_sound;
 
-
+	SoundBuffer win_buffer;
+	Sound win_sound;
 
 public:
 	level_1(void);
