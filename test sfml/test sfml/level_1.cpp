@@ -729,7 +729,7 @@ void level_1::playing()
 				objectsRoadRight[i].move(2.f, 0.f);}
 			
 			if (objectsRoadRight[i].getPosition().x > window.getSize().x + 70) {
-				objectsRoadRight[i].setPosition(-180.f, positionsRoadRight[i].y);
+				objectsRoadRight[i].setPosition(-200.f, positionsRoadRight[i].y);
 			}
 		}
 
