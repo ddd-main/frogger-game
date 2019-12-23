@@ -1,5 +1,6 @@
 #pragma once
 #include "level_1.h"
+#include "level_2.h"
 #include<iostream>
 #include<ctime>
 #include <SFML\Graphics.hpp>
@@ -105,10 +106,11 @@ private:
 
 	SoundBuffer win_buffer;
 	Sound win_sound;
-
+	string name2;
 
 public:
 	level_2(void);
+	level_2(int health,int count , string name2);
 	void load_from_file();
 	void set_texture();
 	void playing();

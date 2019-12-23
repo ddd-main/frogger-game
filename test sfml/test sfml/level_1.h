@@ -1,4 +1,7 @@
 #pragma once
+#include "level_1.h"
+#include "level_2.h"
+#include "top5.h"
 #include<iostream>
 #include<ctime>
 #include <SFML\Graphics.hpp>
@@ -10,11 +13,12 @@
 using namespace sf;
 using namespace std;
 
+
 class level_1
 {
-private:
+public:
 	RenderWindow window;
-	int healthcnt;
+    int healthcnt;
 	int froggernm;
 	bool froggerfound;
 	bool winsFound[5];
@@ -103,11 +107,11 @@ private:
 
 	SoundBuffer win_buffer;
 	Sound win_sound;
-
+	string name1;
 
 
 public:
-	level_1(void);
+	level_1(string);
 	void load_from_file();
 	void set_texture();
 	void playing();

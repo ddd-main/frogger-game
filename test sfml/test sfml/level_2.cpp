@@ -1,5 +1,6 @@
-#include "level_2.h"
 #include "level_1.h"
+#include "level_2.h"
+#include "level_3.h"
 #include<iostream>
 #include<ctime>
 #include <SFML\Graphics.hpp>
@@ -9,17 +10,23 @@
 #include<vector>
 #include <set>
 #include<map>
+#include "top5.h"
+#include"start.h"
 using namespace sf;
 using namespace std;
 
 // constructor
 level_2::level_2(void)
 {
-	window.create(VideoMode(799, 675), "FROGGER DEMO", Style::Close);
+}
 
-	score_dis = 0;
-	healthcnt = 3;
-	froggernm = 0;
+level_2::level_2(int health,int score , string Name){
+		window.create(VideoMode(799, 675), "FROGGER DEMO", Style::Close);
+		score_dis = score;
+		healthcnt = health;
+		name2 = Name;
+		froggernm = 0;
+
 	memset(winsFound, false, sizeof winsFound);
 	froggerfound = false;
 	//Frame rate.
@@ -31,8 +38,8 @@ level_2::level_2(void)
 	load_from_file();
 	set_texture();
 	playing();
-
 }
+
 
 
 // this function to load tectures from folder
@@ -347,19 +354,23 @@ void level_2::set_texture()
 	heartsprite1.setTexture(heart1);
 	heartsprite1.setTextureRect(IntRect(0, 0, 40, 30));
 	heartsprite1.setPosition(Vector2f(8.f, 605.f));
-	Hearts.push_back(heartsprite1);
 
 	heartsprite2.setTexture(heart2);
 	heartsprite2.setTextureRect(IntRect(0, 0, 40, 30));
 	heartsprite2.setPosition(Vector2f(50.f, 605.f));
-	Hearts.push_back(heartsprite2);
 
 	heartsprite3.setTexture(heart3);
 	heartsprite3.setTextureRect(IntRect(0, 0, 40, 30));
 	heartsprite3.setPosition(Vector2f(92.f, 605.f));
-	Hearts.push_back(heartsprite3);
 
-
+	for(int i=0;i<healthcnt;i++){
+		if(i==0){
+			Hearts.push_back(heartsprite1);}
+		if(i==1){
+			Hearts.push_back(heartsprite2);}
+		if(i==2){
+			Hearts.push_back(heartsprite3);}
+	}
 	// font bta3 el score
 	score_text.setFont(score_font);
 	score_text.setCharacterSize(25);
@@ -431,6 +442,9 @@ void level_2::playing()
 			window.close();
 			mainsound.stop();
 			timer_end_sound.stop();
+			//----
+			top5 top(name2, score_dis);
+			//-----
 
 		}
 
@@ -466,7 +480,7 @@ void level_2::playing()
 			}
 
 			
-			Hearts.erase(Hearts.begin() + healthcnt - 1);
+				Hearts.pop_back();
 			Froggers[froggernm].setPosition(Vector2f(345.f, 615.f));
 			Froggers[froggernm].setTextureRect(IntRect(50 * 1, 50 * 3, 50, 40));
 			window.draw(Froggers[froggernm]);
@@ -478,17 +492,21 @@ void level_2::playing()
 				window.close();
 				mainsound.stop();
 				timer_end_sound.stop();	
+				//----
+				top5 top(name2, score_dis);
+				//-----
 			}
 
 
 		}
+		
 		// to change position of frogger
 		while (window.pollEvent(event)) {
 			bool pass = true;
 
 			if (event.type == Event::Closed) { window.close(); }
 
-			if (Froggers[froggernm].getPosition().x >= 0 && Froggers[froggernm].getPosition().x <= 452 && Froggers[froggernm].getPosition().y >= 260 && Froggers[froggernm].getPosition().y <= 339)
+			if (Froggers[froggernm].getPosition().x >= 0 && Froggers[froggernm].getPosition().x <= 452 && Froggers[froggernm].getPosition().y >= 220 && Froggers[froggernm].getPosition().y <= 339)
 				pass = false;
 
 			if (event.type == Event::KeyPressed) {
@@ -527,18 +545,23 @@ void level_2::playing()
 				}
 
 				else if (event.key.code == Keyboard::Down) {
+					if (pass) {
 					Froggers[froggernm].move(Vector2f(0, 50));
 					Froggers[froggernm].setTextureRect(IntRect(50 * 2, 50 * 0, 50, 40));
 					window.draw(Froggers[froggernm]);
 					window.display();
 					Froggers[froggernm].setTextureRect(IntRect(50 * 1, 0, 50, 40));
 					froggerHop_sound.play();
+					}
 				}
 
 				else if (event.key.code == Keyboard::Escape) {
 					window.close(); 
 					mainsound.stop();
 					timer_end_sound.stop();
+					//----
+					top5 top(name2, score_dis);
+					//-----
 				}
 
 			}
@@ -602,7 +625,7 @@ void level_2::playing()
 				}
 
 				
-				Hearts.erase(Hearts.begin() + healthcnt - 1);
+				Hearts.pop_back();
 				Froggers[froggernm].setPosition(Vector2f(345.f, 615.f));
 				Froggers[froggernm].setTextureRect(IntRect(50 * 1, 50 * 3, 50, 40));
 				window.draw(Froggers[froggernm]);
@@ -612,6 +635,9 @@ void level_2::playing()
 					window.close();
 					mainsound.stop();
 					timer_end_sound.stop();
+					//----
+					top5 top(name2, score_dis);
+					//-----
 			    }
 
 			}
@@ -638,7 +664,7 @@ void level_2::playing()
 				}
 
 				
-				Hearts.erase(Hearts.begin() + healthcnt - 1);
+				Hearts.pop_back();
 				Froggers[froggernm].setPosition(Vector2f(345.f, 615.f));
 				Froggers[froggernm].setTextureRect(IntRect(50 * 1, 50 * 3, 50, 40));
 				window.draw(Froggers[froggernm]);
@@ -648,6 +674,9 @@ void level_2::playing()
 					window.close();
 					mainsound.stop();
 					timer_end_sound.stop();
+					//----
+					top5 top(name2, score_dis);
+					//-----
 			    }
 
 
@@ -680,7 +709,7 @@ void level_2::playing()
 				}
 
 
-				Hearts.erase(Hearts.begin() + healthcnt - 1);
+				Hearts.pop_back();
 				Froggers[froggernm].setPosition(Vector2f(345.f, 615.f));
 				Froggers[froggernm].setTextureRect(IntRect(50 * 1, 50 * 3, 50, 40));
 				window.draw(Froggers[froggernm]);
@@ -690,13 +719,16 @@ void level_2::playing()
 					window.close();
 					mainsound.stop();
 					timer_end_sound.stop();
+					//----
+					top5 top(name2, score_dis);
+					//-----
 			    }
 
 
 			}
 
 			else {
-				objectsRoadLeft[i].move(-2.f, 0.f);
+				objectsRoadLeft[i].move(-5.f, 0.f);
 			}
 
 			if (objectsRoadLeft[i].getPosition().x < 0 - 280.f) {
@@ -719,7 +751,7 @@ void level_2::playing()
 				}
 
 
-				Hearts.erase(Hearts.begin() + healthcnt - 1);
+				Hearts.pop_back();
 				Froggers[froggernm].setPosition(Vector2f(345.f, 615.f));
 				Froggers[froggernm].setTextureRect(IntRect(50 * 1, 50 * 3, 50, 40));
 				window.draw(Froggers[froggernm]);
@@ -729,11 +761,14 @@ void level_2::playing()
 					window.close();
 					mainsound.stop();
 					timer_end_sound.stop();
+					//----
+					top5 top(name2, score_dis);
+					//-----
 			    }
 			}
 
 			else {
-				objectsRoadRight[i].move(2.f, 0.f);
+				objectsRoadRight[i].move(5.f, 0.f);
 			}
 
 			if (objectsRoadRight[i].getPosition().x > window.getSize().x + 70) {
@@ -755,10 +790,10 @@ void level_2::playing()
 					froggernm++; winsFound[i] = true;
 					if (froggernm == 5) {
 						froggernm--;
-						cout << "WINS\n";
 						window.close();
 						mainsound.stop();
 						timer_end_sound.stop();
+						level_3 lev(healthcnt, score_dis, name2);
 						break;
 					}
 					window.draw(Froggers[froggernm]);
@@ -778,7 +813,7 @@ void level_2::playing()
 						window.display();
 					}
 
-					Hearts.erase(Hearts.begin() + healthcnt - 1);
+				Hearts.pop_back();
 					Froggers[froggernm].setPosition(Vector2f(345.f, 615.f));
 					Froggers[froggernm].setTextureRect(IntRect(50 * 1, 50 * 3, 50, 40));
 					window.draw(Froggers[froggernm]);
@@ -788,6 +823,9 @@ void level_2::playing()
 						window.close();
 						mainsound.stop();
 						timer_end_sound.stop();
+						//----
+						top5 top(name2, score_dis);
+						//-----
 					}
 
 				}

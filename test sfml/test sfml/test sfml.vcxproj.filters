@@ -24,12 +24,30 @@
     <ClCompile Include="level_2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="start.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="top5.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="level_3.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="level_1.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="level_2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="start.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="top5.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="level_3.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

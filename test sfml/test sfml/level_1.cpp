@@ -12,11 +12,13 @@
 using namespace sf;
 using namespace std;
 
+
+
 // constructor
-level_1::level_1(void)
+level_1::level_1(string Name)
 {
 	window.create(VideoMode(799, 675), "FROGGER DEMO",Style::Close);
-
+	name1 = Name;
 	score_dis = 0;
 	healthcnt = 3;
 	froggernm = 0;
@@ -477,13 +479,12 @@ void level_1::set_texture()
 void level_1::playing()
 {
 
+
 	while (window.isOpen()) {
 
 		//convert int to string bta3t el score
 		count_score = to_string(countscore.size()+score_dis);
 		score_text.setString("score: " + count_score);
-
-
 
 		//Timer
 		elabsed = timer_clock.getElapsedTime();
@@ -503,7 +504,9 @@ void level_1::playing()
 			window.close(); 
 			mainsound.stop();
 			timer_end_sound.stop();
-			level_2 game1;
+			//----
+			top5 top(name1, score_dis);
+			//-----
 		}
 		
 
@@ -550,7 +553,9 @@ void level_1::playing()
 				window.close();
 				mainsound.stop();
 				timer_end_sound.stop();
-				level_2 game1;
+				//----
+				top5 top(name1, score_dis);
+				//-----
 			}
 		}
 
@@ -604,6 +609,9 @@ void level_1::playing()
 					window.close();
 					mainsound.stop();
 					timer_end_sound.stop();
+					//----
+					top5 top(name1, score_dis);
+					//-----
 				}
 
 			}
@@ -707,7 +715,9 @@ void level_1::playing()
 					window.close();
 					mainsound.stop();
 					timer_end_sound.stop();
-					level_2 game1;
+					//----
+					top5 top(name1, score_dis);
+					//-----
 				}
 			
 			}
@@ -745,7 +755,9 @@ void level_1::playing()
 					window.close();
 					mainsound.stop();
 					timer_end_sound.stop();
-					level_2 game1;
+					//----
+					top5 top(name1, score_dis);
+					//-----
 				}
 			}
 
@@ -773,7 +785,7 @@ void level_1::playing()
 						window.close();
 						mainsound.stop();
 						timer_end_sound.stop();
-						level_2 game1;
+						level_2 game1(healthcnt,score_dis , name1);
 						break;
 					}
 					window.draw(Froggers[froggernm]);
@@ -803,7 +815,9 @@ void level_1::playing()
 						window.close();
 						mainsound.stop();
 						timer_end_sound.stop();
-						level_2 game1;
+						//----
+						top5 top(name1, score_dis);
+						//-----
 				    }
 
 			}
@@ -845,7 +859,9 @@ void level_1::playing()
 							window.close();
 							mainsound.stop();
 							timer_end_sound.stop();
-							level_2 game1;
+							//----
+							top5 top(name1, score_dis);
+							//-----
 						}
 					}
 				}
