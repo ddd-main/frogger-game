@@ -235,17 +235,23 @@ void level_3::set_bg()
 	h.setTexture(heart1);
 	h.setTextureRect(IntRect(0, 0, 40, 30));
 	h.setPosition(Vector2f(140.f, 605.f));
-	Heart.push_back(h);
 
 	h1.setTexture(heart2);
 	h1.setTextureRect(IntRect(0, 0, 40, 30));
 	h1.setPosition(Vector2f(180.f, 605.f));
-	Heart.push_back(h1);
 
 	h2.setTexture(heart2);
 	h2.setTextureRect(IntRect(0, 0, 40, 30));
 	h2.setPosition(Vector2f(220.f, 605.f));
-	Heart.push_back(h2);
+
+	for(int i=0;i<healthcnt;i++){
+		if(i==0){
+			Heart.push_back(h);}
+		if(i==1){
+			Heart.push_back(h1);}
+		if(i==2){
+			Heart.push_back(h2);}
+	}
 
 	//////// down turtiless
 	woo3.setTexture(wood3);
