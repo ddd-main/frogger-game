@@ -148,7 +148,7 @@ top5::top5(string name, int score_dis)
 	exit_text.setFont(exit_font);
 	exit_text.setString("Exit :'(");
 	exit_text.setCharacterSize(50);
-	exit_text.setColor(Color::Black);
+	exit_text.setColor(Color::White);
 	exit_text.setPosition(550, 550);
 
 	play_text.setFont(play_font);
@@ -186,6 +186,7 @@ top5::top5(string name, int score_dis)
 					exit_text.setColor(Color::Yellow);
 					play_text.setColor(Color::White);
 					play_text.setPosition(20, 550);
+					play_text.setCharacterSize(50);
 					s = 0;
 					break;
 
